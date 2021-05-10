@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{80EBA14A-C777-4469-8BE5-6D6EB60FA8C7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CheckSum.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CheckSum">
+        <MSBuild Projects="CheckSum.dproj"/>
+    </Target>
+    <Target Name="CheckSum:Clean">
+        <MSBuild Projects="CheckSum.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CheckSum:Make">
+        <MSBuild Projects="CheckSum.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CheckSum"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CheckSum:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CheckSum:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
